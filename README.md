@@ -154,9 +154,9 @@ Valor total: R$ 150.00
 ```
 
 ## 👥 Integrantes
-Kauan Rodrigues Oliveira
-Nome do Integrante 2
-João Victor Bandeira de Sousa
+- Kauan Rodrigues Oliveira
+- Miguel Braga Alves Gabriel
+- João Victor Bandeira de Sousa
 
 ## 📚 Considerações Finais
 
