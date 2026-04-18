@@ -1,15 +1,33 @@
 package interfaces;
 
 /**
- ** Interface para operações de locação de veículos.
- ** Esta interface define os métodos que devem ser implementados por qualquer classe
- ** que represente um veículo que possa ser alugado, como Carro e Moto.
+ * Interface que define as operações básicas de locação de um veículo.
+ * 
+ * Qualquer classe que represente um veículo alugável deve implementar esta interface.
+ * Esta interface demonstra o uso de Polimorfismo e Contrato entre classes,
+ * permitindo que diferentes tipos de veículos implementem as operações de forma específica.
+ * 
+ * @author Projeto Locadora POO
+ * @version 1.0
  */
-
 public interface OperacoesLocacao {
-  double calcularDiaria();
+	/**
+	 * Calcula o valor diário para aluguel do veículo.
+	 * Cada tipo de veículo pode ter um cálculo diferente baseado em suas características.
+	 * 
+	 * @return O valor da diária em R$ (reais)
+	 */
+	double calcularDiaria();
 
-  void alugarVeiculo();
+	/**
+	 * Registra o aluguel do veículo.
+	 * Este método é chamado quando um cliente realiza a locação de um veículo.
+	 */
+	void alugarVeiculo();
 
-  void devolverVeiculo();
+	/**
+	 * Registra a devolução do veículo.
+	 * Este método é chamado quando um cliente devolve o veículo alugado.
+	 */
+	void devolverVeiculo();
 }

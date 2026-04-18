@@ -3,66 +3,130 @@ package model;
 import interfaces.OperacoesLocacao;
 
 /**
- * JAVA DOCS - PROJETO LOCADORA DE VEÍCULOS
- ** A classe Veiculo representa um veículo genérico, contendo informações comuns
- * a todos os tipos de veículos.
- ** Ela serve como uma classe base para as classes Carro e Moto, que herdam suas
- * propriedades.
+ * Classe abstrata que representa um veículo genérico da locadora.
+ * 
+ * Define os atributos e métodos comuns a todos os tipos de veículos (Carro, Moto).
+ * Implementa OperacoesLocacao, garantindo que todas as subclasses tenham as operações
+ * necessárias para locação.
+ * 
+ * @author Projeto Locadora POO
+ * @version 1.0
  */
-
 public abstract class Veiculo implements OperacoesLocacao {
-  private String brand;
-  private String model;
-  private String color;
-  private int year;
+	private String marca;
+	private String modelo;
+	private String cor;
+	private int ano;
 
-  public Veiculo(String brand, String model, String color, int year) {
-    this.brand = brand;
-    this.model = model;
-    this.color = color;
-    this.year = year;
-  }
+	/**
+	 * Construtor de Veiculo com validações básicas.
+	 * 
+	 * @param marca  Marca do veículo (ex: Toyota, Honda)
+	 * @param modelo Modelo do veículo (ex: Corolla, CB500)
+	 * @param cor    Cor do veículo (ex: Preto, Prata)
+	 * @param ano    Ano de fabricação do veículo
+	 * @throws IllegalArgumentException se algum parâmetro for inválido
+	 */
+	public Veiculo(String marca, String modelo, String cor, int ano) {
+		if (marca == null || marca.isBlank()) {
+			throw new IllegalArgumentException("Marca não pode ser vazia");
+		}
+		if (modelo == null || modelo.isBlank()) {
+			throw new IllegalArgumentException("Modelo não pode ser vazio");
+		}
+		if (ano < 1886 || ano > 2026) {
+			throw new IllegalArgumentException("Ano inválido: " + ano);
+		}
+		
+		this.marca = marca;
+		this.modelo = modelo;
+		this.cor = cor;
+		this.ano = ano;
+	}
 
-  public abstract void exibirDetalhes();
-  public abstract void ligar();
-  public abstract void desligar();
+	/**
+	 * Exibe os detalhes do veículo.
+	 * Implementação varia de acordo com o tipo específico de veículo.
+	 */
+	public abstract void exibirDetalhes();
 
-  public abstract double calcularDiaria();
+	/**
+	 * Retorna uma representação textual com os detalhes do veículo.
+	 * 
+	 * @return String com informações do veículo
+	 */
+	public String obterDetalhes() {
+		return String.format("Marca: %s, Modelo: %s, Cor: %s, Ano: %d", 
+			marca, modelo, cor, ano);
+	}
 
-  public abstract void alugarVeiculo();
+	/**
+	 * Simula o acionamento do motor do veículo.
+	 */
+	public abstract void ligar();
 
-  public abstract void devolverVeiculo();
+	/**
+	 * Simula o desligamento do motor do veículo.
+	 */
+	public abstract void desligar();
 
-  // Getters e Setters
-  public String getBrand() {
-    return brand;
-  }
+	/**
+	 * Calcula o valor da diária de aluguel do veículo.
+	 * 
+	 * @return O valor da diária em R$ (reais)
+	 */
+	@Override
+	public abstract double calcularDiaria();
 
-  public void setBrand(String brand) {
-    this.brand = brand;
-  }
+	/**
+	 * Registra o aluguel do veículo.
+	 */
+	@Override
+	public abstract void alugarVeiculo();
 
-  public String getModel() {
-    return model;
-  }
+	/**
+	 * Registra a devolução do veículo.
+	 */
+	@Override
+	public abstract void devolverVeiculo();
 
-  public void setModel(String model) {
-    this.model = model;
-  }
+	// ===== GETTERS E SETTERS =====
 
-  public String getColor() {
-    return color;
-  }
+	public String getMarca() {
+		return marca;
+	}
 
-  public void setColor(String color) {
-    this.color = color;
-  }
+	public void setMarca(String marca) {
+		if (marca != null && !marca.isBlank()) {
+			this.marca = marca;
+		}
+	}
 
-  public int getYear() {
-    return year;
-  }
+	public String getModelo() {
+		return modelo;
+	}
 
-  public void setYear(int year) {
-    this.year = year;
-  }
+	public void setModelo(String modelo) {
+		if (modelo != null && !modelo.isBlank()) {
+			this.modelo = modelo;
+		}
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+
+	public int getAno() {
+		return ano;
+	}
+
+	public void setAno(int ano) {
+		if (ano >= 1886 && ano <= 2026) {
+			this.ano = ano;
+		}
+	}
 }

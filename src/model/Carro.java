@@ -1,53 +1,78 @@
 package model;
 
 /**
- * JAVA DOCS - PROJETO LOCADORA DE VEÍCULOS
- ** A classe Carro representa um carro, que é um tipo específico de veículo.
- ** Ela herda as propriedades da classe Veiculo e implementa os métodos abstratos
- * definidos na classe base, além de implementar a interface OperacoesLocacao para
- * definir as operações de locação específicas para carros.
+ * Classe que representa um carro, tipo específico de veículo.
+ * 
+ * Herda propriedades de Veiculo e implementa comportamentos específicos para carros,
+ * como cálculo de diária baseado no tipo de veículo.
+ * 
+ * @author Projeto Locadora POO
+ * @version 1.0
  */
-
 public class Carro extends Veiculo {
-  private int numberOfDoors;
+	private int numeroPortas;
 
-  public Carro(String brand, String model, String color, int year, int numberOfDoors) {
-    super(brand, model, color, year);
-    this.numberOfDoors = numberOfDoors;
-  }
+	/**
+	 * Construtor de Carro.
+	 * 
+	 * @param marca        Marca do carro
+	 * @param modelo       Modelo do carro
+	 * @param cor          Cor do carro
+	 * @param ano          Ano de fabricação
+	 * @param numeroPortas Número de portas do carro
+	 */
+	public Carro(String marca, String modelo, String cor, int ano, int numeroPortas) {
+		super(marca, modelo, cor, ano);
+		if (numeroPortas < 2 || numeroPortas > 5) {
+			throw new IllegalArgumentException("Número de portas inválido: " + numeroPortas);
+		}
+		this.numeroPortas = numeroPortas;
+	}
 
-  @Override
-  public void exibirDetalhes() {
-    System.out.println("Marca: " + getBrand());
-    System.out.println("Modelo: " + getModel());
-    System.out.println("Cor: " + getColor());
-    System.out.println("Ano: " + getYear());
-    System.out.println("Número de Portas: " + numberOfDoors);
-  }
+	@Override
+	public void exibirDetalhes() {
+		System.out.println("Marca: " + getMarca());
+		System.out.println("Modelo: " + getModelo());
+		System.out.println("Cor: " + getCor());
+		System.out.println("Ano: " + getAno());
+		System.out.println("Número de Portas: " + numeroPortas);
+	}
 
-  @Override
-  public void ligar() {
-    System.out.println("O carro está ligado.");
-  }
+	@Override
+	public void ligar() {
+		System.out.println("O carro está ligado.");
+	}
 
-  @Override
-  public void desligar() {
-    System.out.println("O carro está desligado.");
-  }
+	@Override
+	public void desligar() {
+		System.out.println("O carro está desligado.");
+	}
 
-  @Override
-  public double calcularDiaria() {
-    // Exemplo de cálculo de valor de locação para um carro
-    return 100.0; // Valor fixo para simplificação
-  }
+	/**
+	 * Calcula a diária para aluguel de carro.
+	 * Valores: R$ 100.00 por dia (padrão educacional)
+	 */
+	@Override
+	public double calcularDiaria() {
+		return 100.0;
+	}
 
-  @Override
-  public void alugarVeiculo() {
-    System.out.println("O carro foi alugado.");
-  }
+	@Override
+	public void alugarVeiculo() {
+		System.out.println("O carro foi alugado.");
+	}
 
-  @Override
-  public void devolverVeiculo() {
-    System.out.println("O carro foi devolvido.");
-  }
+	@Override
+	public void devolverVeiculo() {
+		System.out.println("O carro foi devolvido.");
+	}
+
+	/**
+	 * Obtém o número de portas do carro.
+	 * 
+	 * @return Número de portas
+	 */
+	public int getNumeroPortas() {
+		return numeroPortas;
+	}
 }

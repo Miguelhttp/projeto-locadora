@@ -1,49 +1,61 @@
 package model;
 
 /**
- * JAVA DOCS - PROJETO LOCADORA DE VEÍCULOS
- ** A classe Moto representa uma motocicleta, que é um tipo específico de
- * veículo.
- ** Ela herda as propriedades da classe Veiculo e implementa os métodos abstratos
- * definidos na classe base.
+ * Classe que representa uma motocicleta, tipo específico de veículo.
+ * 
+ * Herda propriedades de Veiculo e implementa comportamentos específicos para motos,
+ * como cálculo de diária reduzida em relação aos carros.
+ * 
+ * @author Projeto Locadora POO
+ * @version 1.0
  */
+public class Moto extends Veiculo {
+	/**
+	 * Construtor de Moto.
+	 * 
+	 * @param marca  Marca da motocicleta
+	 * @param modelo Modelo da motocicleta
+	 * @param cor    Cor da motocicleta
+	 * @param ano    Ano de fabricação
+	 */
+	public Moto(String marca, String modelo, String cor, int ano) {
+		super(marca, modelo, cor, ano);
+	}
 
-public class Moto extends Veiculo  {
-  public Moto(String brand, String model, String color, int year) {
-    super(brand, model, color, year);
-  }
+	@Override
+	public void exibirDetalhes() {
+		System.out.println("Marca: " + getMarca());
+		System.out.println("Modelo: " + getModelo());
+		System.out.println("Cor: " + getCor());
+		System.out.println("Ano: " + getAno());
+	}
 
-  @Override
-  public void exibirDetalhes() {
-    System.out.println("Marca: " + getBrand());
-    System.out.println("Modelo: " + getModel());
-    System.out.println("Cor: " + getColor());
-    System.out.println("Ano: " + getYear());
-  }
+	@Override
+	public void ligar() {
+		System.out.println("A moto está ligada.");
+	}
 
-  @Override
-  public void ligar() {
-    System.out.println("A moto está ligada.");
-  }
+	@Override
+	public void desligar() {
+		System.out.println("A moto está desligada.");
+	}
 
-  @Override
-  public void desligar() {
-    System.out.println("A moto está desligada.");
-  }
+	/**
+	 * Calcula a diária para aluguel de moto.
+	 * Valores: R$ 50.00 por dia (padrão educacional)
+	 */
+	@Override
+	public double calcularDiaria() {
+		return 50.0;
+	}
 
-  @Override
-  public double calcularDiaria() {
-    // Exemplo de cálculo de valor de locação para uma moto
-    return 50.0; // Valor fixo para simplificação
-  }
+	@Override
+	public void alugarVeiculo() {
+		System.out.println("A moto foi alugada.");
+	}
 
-  @Override
-  public void alugarVeiculo() {
-    System.out.println("A moto foi alugada.");
-  }
-
-  @Override
-  public void devolverVeiculo() {
-    System.out.println("A moto foi devolvida.");
-  }
+	@Override
+	public void devolverVeiculo() {
+		System.out.println("A moto foi devolvida.");
+	}
 }
